@@ -1,11 +1,9 @@
 export class BasePage {
-    constructor(page) {
-        this.page = page;
-    }
-    async acessar(url) {
-        await this.page.goto(url, {
-            waitUntil: 'domcontentloaded'
+  constructor(page) {
+    this.page = page;
+  }
 
-        })
-    }
+  async acessarHome() {
+    await this.page.goto('/', { waitUntil: 'domcontentloaded' });
+  }
 }

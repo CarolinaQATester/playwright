@@ -1,23 +1,34 @@
-import{ BasePage } from "./BasePage";
+import { BasePage } from "./BasePage";
 
 export class TextBoxPage extends BasePage {
-    constructor(page){
-        super(page);
-    
+  constructor(page) {
+    super(page);
 
-    this.fullName = page.locator("#userName");
-    this.email = page.locator("#userEmail");
-    this.currentAddress = page.locator("#currentAddress");
-    this.permanentAddress = page.locator("#permanentAddress");
-    this.submit = page.locator("#submit");
-    this.resultado = page.locator("#output")
-    }
+    // Inputs
+    this.nome = page.locator('#userName');
+    this.email = page.locator('#userEmail');
+    this.enderecoAtual = page.locator('textarea#currentAddress');
+    this.enderecoPermanente = page.locator('textarea#permanentAddress');
+    this.botaoSubmit = page.locator('#submit');
+    this.resultado = page.locator('#output');
 
-    async devePreencherFormulario(){
-        await this.fullName.fill('Carolina');
-        await this.email.fill('teste@teste.com');
-        await this.currentAddress.fill('teste');
-        await this.permanentAddress.fill('teste teste')
-        await this.submit.click();
-    }
+    // 🔥 Outputs (ESCOPADOS)
+    this.outputContainer = page.locator('#output');
+    this.outputNome = this.outputContainer.locator('#name');
+    this.outputEmail = this.outputContainer.locator('#email');
+    this.outputEnderecoAtual =
+      this.outputContainer.locator('#currentAddress');
+    this.outputEnderecoPermanente =
+      this.outputContainer.locator('#permanentAddress');
+  }
+
+  async devePreencherFormulario() {
+    await this.nome.fill('Carol QA');
+    await this.email.fill('carol@email.com');
+    await this.enderecoAtual.fill("Rua QA");
+    await this.enderecoPermanente.fill("Rua Automação");
+
+    await this.botaoSubmit.scrollIntoViewIfNeeded();
+    await this.botaoSubmit.click();
+  }
 }
