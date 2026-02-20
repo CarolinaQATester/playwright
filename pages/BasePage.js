@@ -4,6 +4,7 @@ export class BasePage {
   }
 
   async acessarHome() {
-    await this.page.goto('/', { waitUntil: 'domcontentloaded' });
+    await this.page.goto('https://demoqa.com/', 
+      { waitUntil: 'domcontentloaded' });
   }
 }
